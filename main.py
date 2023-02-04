@@ -120,6 +120,29 @@ def add_class():
     form = form,
     our_classes=our_classes)
 
+@app.route('/cmenu/<int:id>',methods=['POST','GET'])
+def cmenu(id):
+    form = ClassForm()
+    name_to_update = Class.query.get_or_404(id)
+    if request.method == "POST":
+        name_to_update.name = request.form['name']
+        try:
+            cdb.session.commit()
+            flash("Class Updated Successfully!")
+            return render_template("cmenu.html",form=form,name_to_update = name_to_update)
+        except:
+            flash("Something went wrong! Try Again!")
+            return render_template("cmenu.html",
+                form=form,
+                name_to_update = name_to_update,
+                )
+
+    else:
+            return render_template("cmenu.html",
+            form=form,
+            name_to_update = name_to_update)
+
+
 
 
 
