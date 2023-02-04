@@ -1,5 +1,5 @@
 import os
-from flask import Flask, flash, request, redirect, url_for, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, flash, request, redirect, url_for, render_template, request, redirect, url_for, flash, jsonify,send_from_directory
 from werkzeug.utils import secure_filename
 import hashlib
 import uuid
@@ -112,33 +112,72 @@ def add_class():
     form = form,
     our_classes=our_classes)
 
-@app.route('/cmenu/<int:id>',methods=['POST','GET'])
-def cmenu(id):
-    print(id)
-    print("------------------------------------------------------------")
+@app.route("/classes/<int:id>/", methods=['GET','POST'])
+def classes(id):
+    name = None
     form = ClassForm()
-    name_to_update = course_info.get_course_by_id(id)
-    if request.method == "POST":
-        name_to_update.name = request.form['name']
-        try:
-            cdb.session.commit()
-            flash("Class Updated Successfully!")
-            return render_template("cmenu.html",form=form,name_to_update = name_to_update)
-        except:
-            flash("Something went wrong! Try Again!")
-            return render_template("cmenu.html",
-                form=form,
-                name_to_update = name_to_update,
-                )
+    class_name = str(course_info.get_course_by_id(id))
+    if form.validate_on_submit():
+        #grab all the users that typed in the entered classname. Should return None unless the class is already in the database
+        #Class.query.filter_by(name = form.name.data).first()
+        #!!! Need to add and else statement in case the classdata does exist. Maybe say that this class is already in our database or smthn
+        classdata = course_info.add_folder(form.name.data,class_name)
+        if classdata is not False:
+            flash("Class Added Successfully!")
+            form.name.data = ''
+            name = form.name.data
+            form.name.data = ''
+        else:
+            flash("That class is already in the DataBase!!!")
+    
+    our_weeks = course_info.get_folders_list(class_name)
+    print(our_weeks)
+    print("------------------------------------------------------------")
+    return render_template('add_week.html',
+    name = name,
+    form = form,
+    our_weeks=our_weeks,
+    id=id)
 
-    else:
-            return render_template("cmenu.html",
-            form=form,
-            name_to_update = name_to_update)
+
+
+@app.route('/classes/<int:id>/<string:week>',methods=['POST','GET'])
+def cmenu(id,week):
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            
+            filename=save_file(file)
+            file_info.add_file(filename,str(course_info.get_course_by_id(id)),week,str(filename),UPLOAD_FOLDER+'/'+filename)
+    
+    
+    
+    
+    print(id,week)
+    
+    print("------------------------------------------------------------")
+    name_to_update = str(course_info.get_course_by_id(id))
+    files_list=file_info.get_files_list(name_to_update,week)
+    print(files_list)
+    
+    return render_template("files.html",
+            our_files=files_list,
+            name = week)
 
 
 
-
+@app.route("/getfile/<string:filename>", methods=['GET'])
+def getfile(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],filename, as_attachment=True)
 
 
 

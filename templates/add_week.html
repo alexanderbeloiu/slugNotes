@@ -5,7 +5,7 @@
 {% else %}
     <h1>Enter a New Class?</h1>
     <br>
-    <form action = "/classes" method="POST">
+    <form action = "/classes/{{ id }} " method="POST">
         {{ form.hidden_tag() }}
 
         {{ form.name.label }}
@@ -16,10 +16,11 @@
     </form>
     <br><br><br>
     <h3>Classes in Database:</h3>
-{% for our_class in our_classes %}
+{% for our_week in our_weeks %}
     <tr>
     <td>
-    <a href="{{ url_for('classes', id=our_class[1])}}">{{ our_class[0] }}</a><br>
+        <a href="{{our_week}}">{{ our_week }}</a><br>
+    
     </td>
     </tr>
 {% endfor %}
