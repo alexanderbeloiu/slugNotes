@@ -33,7 +33,7 @@ def save_file(file):
     filename = secure_filename(file.filename)
     
     #adds the file to the database
-    file_info.add_file(filename,'CSE_30','week1',filename,100,datetime.today().strftime('%Y-%m-%d %H:%M:%S'),filename[filename.rindex("."):len(filename)],1,UPLOAD_FOLDER+'/'+filename)
+    file_info.add_file(filename,'CSE_30','week1',filename,UPLOAD_FOLDER+'/'+filename)
     
     #saves the file to the disk
     file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
@@ -61,7 +61,7 @@ def upload_file():
 
 @app.route("/")
 def hello():
-    return render_template('index.html')
+    return render_template('index.html',class_name)
 
 
 #Creating a Form Class for adding new classes to the class database. One input box. One submit box
@@ -80,14 +80,7 @@ with app.app_context():
     cdb = SQLAlchemy(app)
 
 #subject class for each individual class object
-class Class(cdb.Model):
-    #id so that we can delete or modify a specific element. Primary key generates this unique id
-    id = cdb.Column(cdb.Integer, primary_key = True)
-    name = cdb.Column(cdb.String(200), nullable=False, unique=True)
-    date_added = cdb.Column(cdb.DateTime, default=datetime.utcnow)
 
-    def __repr__(self):
-        return '<Name %r>' % self.name
 
 
 
