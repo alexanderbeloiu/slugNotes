@@ -57,7 +57,7 @@ def upload_file():
             
             filename=save_file(file)
             return redirect(url_for('upload_file', name=filename))
-    return 'oops looks like ur broken!'
+    return render_template('upload.html')
 
 @app.route("/")
 def hello():
