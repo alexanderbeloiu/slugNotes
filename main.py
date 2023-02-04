@@ -21,6 +21,7 @@ app.secret_key = "ouhojaheoduh[a0uhfouahd;oubasdoiholjawbe;h[oiabfljhvipuh"
 
 #this is the object that interacts with the database
 file_info=database.Files()
+course_info=database.course()
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -61,7 +62,7 @@ def upload_file():
 
 @app.route("/")
 def hello():
-    return render_template('index.html',class_name)
+    return render_template('index.html')
 
 
 #Creating a Form Class for adding new classes to the class database. One input box. One submit box
@@ -93,21 +94,19 @@ def add_class():
     form = ClassForm()
     if form.validate_on_submit():
         #grab all the users that typed in the entered classname. Should return None unless the class is already in the database
-        classdata = Class.query.filter_by(name = form.name.data).first()
+        #Class.query.filter_by(name = form.name.data).first()
         #!!! Need to add and else statement in case the classdata does exist. Maybe say that this class is already in our database or smthn
-        if classdata is None:
-            classdata = Class(name = form.name.data)
-            #ig its adding and committing the new data to our database?
-            cdb.session.add(classdata)
-            cdb.session.commit()
+        classdata = course_info.add_class(form.name.data)
+        if classdata is not False:
             flash("Class Added Successfully!")
             form.name.data = ''
             name = form.name.data
             form.name.data = ''
         else:
             flash("That class is already in the DataBase!!!")
-            
-    our_classes = Class.query
+    
+    our_classes = course_info.get_class_and_ids()
+    
     return render_template('add_class.html',
     name = name,
     form = form,
@@ -115,8 +114,10 @@ def add_class():
 
 @app.route('/cmenu/<int:id>',methods=['POST','GET'])
 def cmenu(id):
+    print(id)
+    print("------------------------------------------------------------")
     form = ClassForm()
-    name_to_update = Class.query.get_or_404(id)
+    name_to_update = course_info.get_course_by_id(id)
     if request.method == "POST":
         name_to_update.name = request.form['name']
         try:

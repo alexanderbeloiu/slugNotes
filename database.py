@@ -40,7 +40,7 @@ class Files():
 
     #adds a file to the database. It takes the file info as arguments, and puts them as columns in the database
     def add_file(self, name, class_name, week_name, file_name, path, user_id=1):
-        self.session.add(Ufile(name=name, class_name=class_name, week_name=week_name, file_name=file_name, date=datetime.today().strftime('%Y-%m-%d %H:%M:%S'), type=file_name[file_name.rindex(".")+1:len(file_name)], path=path, user_id=user_id,))
+        self.session.add(Ufile(name=name, class_name=class_name, week_name=week_name, file_name=file_name, date=datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'), type=file_name[file_name.rindex(".")+1:len(file_name)], path=path, user_id=user_id,))
         self.session.commit()
 
     #gets the gives you the file path when you give it the class name, week name, and note name
@@ -104,8 +104,11 @@ class course():
         self.session = Session()
 
     def add_class(self, name):
+        if self.session.query(Class).filter_by(name=name).first() is not None:
+            return False
         self.session.add(Class(name=name))
         self.session.commit()
+        return name
     
     def edit_class(self,name, new_name):
         class_to_edit = self.session.query(Class).filter_by(name=name).first()
@@ -141,6 +144,17 @@ class course():
         folders = self.session.query(folder.name).filter_by(class_name=class_name).all()
         folders = [i[0] for i in folders]
         return folders
+    def get_all_courses(self):
+        classes = self.session.query(Class.name).all()
+        classes = [i[0] for i in classes]
+        return classes
+    def get_course_by_id(self, id):
+        course = self.session.query(Class).filter_by(id=id).first()
+        return course
+    def get_class_and_ids(self):
+        #returns tuple of the class name and its id
+        classes = self.session.query(Class.name, Class.id).all()
+        return list(classes)
 
 
 
@@ -153,7 +167,7 @@ class course():
 
 if __name__ == '__main__':
     #example of how you can use it
-    f=class_name()
+    f=course()
     f2=Files()
     f.add_class('math')
     
