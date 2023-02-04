@@ -5,6 +5,13 @@ import hashlib
 import uuid
 import database
 from datetime import datetime
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import DateTime
+#Import for creating forms. pip3 install flask-wtf
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
+
 UPLOAD_FOLDER = 'data'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','c','py','docx','doc'}
 
@@ -50,23 +57,71 @@ def upload_file():
             
             filename=save_file(file)
             return redirect(url_for('upload_file', name=filename))
-    
-    
-    #you guys can try to convert to the below code to a template
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
-
+    return 'oops looks like ur broken!'
 
 @app.route("/")
 def hello():
     return render_template('index.html')
+
+
+#Creating a Form Class for adding new classes to the class database. One input box. One submit box
+#used what the forms. We can add alot of cool form types if we want if we have time!!! https://youtu.be/GbJPqu0ff9A?t=1173
+app.config['SECRET_KEY'] = "I hope I'm doing this right?"
+class ClassForm(FlaskForm):
+    name = StringField("Add a New Class Here!", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
+
+
+
+#Creating a class database to hold all possible classes on the site!
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///subject.db'
+with app.app_context():
+    cdb = SQLAlchemy(app)
+
+#subject class for each individual class object
+class Class(cdb.Model):
+    #id so that we can delete or modify a specific element. Primary key generates this unique id
+    id = cdb.Column(cdb.Integer, primary_key = True)
+    name = cdb.Column(cdb.String(200), nullable=False, unique=True)
+    date_added = cdb.Column(cdb.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<Name %r>' % self.name
+
+
+
+
+#(Aidan) Goal: make a list of classes that also has options to 
+#POST: situation when a button is clicked. GET: natural state of webpage
+@app.route("/classes", methods=['GET','POST'])
+def add_class():
+    name = None
+    form = ClassForm()
+    if form.validate_on_submit():
+        #grab all the users that typed in the entered classname. Should return None unless the class is already in the database
+        classdata = Class.query.filter_by(name = form.name.data).first()
+        #!!! Need to add and else statement in case the classdata does exist. Maybe say that this class is already in our database or smthn
+        if classdata is None:
+            classdata = Class(name = form.name.data)
+            #ig its adding and committing the new data to our database?
+            cdb.session.add(classdata)
+            cdb.session.commit()
+            flash("Class Added Successfully!")
+            form.name.data = ''
+            name = form.name.data
+            form.name.data = ''
+        else:
+            flash("That class is already in the DataBase!!!")
+            
+    our_classes = Class.query
+    return render_template('add_class.html',
+    name = name,
+    form = form,
+    our_classes=our_classes)
+
+
+
 
 
 

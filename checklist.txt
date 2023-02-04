@@ -5,7 +5,7 @@
 
 #TODO Features
 1. Make a home page in html the describes the project
-2. add a page that lists all the classes, and you can add a new class (i think you will have to make a seperate database file)
+2. add a page that lists all the classes, and you can add a new class
 3. add a page that lists all the weeks in the class, and another that lists all the files
 
 
@@ -14,8 +14,29 @@
 
 
 
-#TODO Aidan
+#Aidan Stuff
+    IMPORTANT:
+        -everyone now needs to install flast_wtf(its pip3 install flask-wtf)
+    CHANGES:
+        -Somehow made it so that Alex's file /upload page doesn't work
+        -Used Template inhereitance to make flash messages readable and add a navigation bar
+        -Created a class page and database that you can add onto with a built in form
+            -Used the import flask_wtf to do this which you have to download!!!
 
+    TODO:
+        -Thinking about next step... every single class needs to have its own database/page that students can acccess where all the files go into. ig I can figure that out when alex awake
+        -Figure out how to make alex code not make an error
+        -Implement alex code to accomplish the task its supposed to do
+        -Figure out how to delete stuff on the database
+        -Figure out how to connect whatever the fuck jeffery and kelly are doing to this code
+        -Figure out how to store files on each little class(do we need to automate it so that each time a new class is made a new database is made for it to hold the file? Should we even let users create new classes? Teacher Mode? idk)
+        -Make everything prettier and easier to use
+        -debug.
+
+    QUESTIONS FOR ALEX IG:
+        -Where is the HTML for your /upload file? I want to fix it but idk where you put your html and stuff
+        -I added some app.config things and idk if that messes up ur stuff. Honestly i still dont really know what app.config does but i needed it for the database.
+        -I hope ur proud and I made useful changes?
 
 #TODO Kelly
 

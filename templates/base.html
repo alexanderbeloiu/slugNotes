@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First HTML Page</title>
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul class=flashes>
+{% for message in messages %}
+      <li>{{ message }}</li>
+{% endfor %}
+    </ul>
+{% endif %}
+{% endwith %}
+    <div>
+        <h1>Directory:<a href="/">Home</a> | <a href="/upload">upload file</a> | <a href="/classes">classes</a></h1>
+    </div>
+{% block content%} {% endblock %}
+</body>
+
+</html>

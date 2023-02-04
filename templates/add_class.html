@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+{% if name %}
+    <h1>You entered in the class: {{ name }}</h1>
+{% else %}
+    <h1>Enter a New Class?</h1>
+    <br>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        {{ form.name.label }}
+        {{ form.name() }}
+
+        <br>
+        {{ form.submit() }}
+    </form>
+    <br><br><br>
+    <h3>Classes in Database:</h3>
+{% for our_class in our_classes %}
+    {{ our_class.name }}<br>
+{% endfor %}
+{% endif %}
+{% endblock %}
