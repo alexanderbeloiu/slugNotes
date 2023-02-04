@@ -1,5 +1,12 @@
 #TODO overall
-1. create home page
+1. Learn more about flask
+2. Learn more about sqlalchemy
+3. Learn more about html/class
+
+#TODO Features
+1. Make a home page in html the describes the project
+2. add a page that lists all the classes, and you can add a new class (i think you will have to make a seperate database file)
+3. add a page that lists all the weeks in the class, and another that lists all the files
 
 
 
