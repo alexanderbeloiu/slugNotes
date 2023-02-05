@@ -70,6 +70,20 @@ class Files():
         self.session.delete(file_to_delete)
         self.session.commit()
 
+    def delete_course(self, class_name):
+        files_to_delete = self.session.query(Ufile).filter_by(class_name=class_name).all()
+        for file in files_to_delete:
+            self.session.delete(file)
+        self.session.commit()
+        weeks_to_delete = self.session.query(Ufile.week_name).filter_by(class_name=class_name).distinct().all()
+        for week in weeks_to_delete:
+            self.session.delete(week)
+        self.session.commit()
+        classes_to_delete = self.session.query(Ufile.class_name).filter_by(class_name=class_name).distinct().all()
+        for class_ in classes_to_delete:
+            self.session.delete(class_)
+        self.session.commit()
+
 
 
 
