@@ -180,12 +180,20 @@ def cmenu(id,week):
 
 
 
-@app.route("/getfile/<string:filename>", methods=['GET'])
+
+
+
+
+@app.route("/getfile/<string:filename>")
 def getfile(filename):
+    filetype=filename.split(".")[1]
+    if filetype=="pdf":
+        return send_from_directory(app.config['UPLOAD_FOLDER'],filename, as_attachment=True,attachment_filename=filename, mimetype='application/pdf')
+    elif filetype=="docx":
+        return send_from_directory(app.config['UPLOAD_FOLDER'],filename, as_attachment=True,attachment_filename=filename, mimetype='application/docx')
+    if filetype=="jpg" or filetype=="png" or filetype=="jpeg":
+        return send_from_directory(app.config['UPLOAD_FOLDER'],filename, as_attachment=True,attachment_filename=filename, mimetype='image/jpg')
     return send_from_directory(app.config['UPLOAD_FOLDER'],filename, as_attachment=True)
-
-
-
 
 if __name__ == "__main__":
     app.run(port=4000, debug=True)  
