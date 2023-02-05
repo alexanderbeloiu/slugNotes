@@ -1,0 +1,93 @@
+html *{font-family:"JetBrains Mono",monospace;}
+
+.logo-container {
+    position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:5px;
+
+}
+.descriptiondiv {
+    margin:5px;
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.description{
+    text-align:center;
+    margin:3px;
+}
+.searchandmenu{
+  position:absolute;
+  top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+#mySearch {
+  position:relative;
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+::placeholder{
+  font-size:10px;
+}
+
+/* Style the navigation menu */
+#myMenu {
+  position:fixed;
+  visibility:hidden;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style the navigation links */
+#myMenu li a {
+  display:block;
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+}
+
+#myMenu li a:hover {
+  position:relative;
+  width:107%;
+  background-color: #eee;
+}
+/*for shrinking*/
+@media screen and (max-width: 600px){
+  .descriptiondiv {
+    display: none;
+  }
+
+}
+@media screen and (max-height: 600px){
+  .descriptiondiv {
+    display: none;
+  }
+
+  }
+
+@media screen and (max-width: 400px){
+
+  .logo-container{
+    display:none;
+  }
+}
+@media screen and (max-height: 400px){
+
+  .logo-container{
+    display:none;
+  }
+}
