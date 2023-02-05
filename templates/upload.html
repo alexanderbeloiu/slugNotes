@@ -4,7 +4,9 @@
       <h1>Upload notes here</h1>
       
       <form method=post enctype=multipart/form-data>
-        <input type="file" id="real" name="file" hidden>
+        <!-- <input type="file" id="real" name="file" hidden> -->
+        <input type="file" id="real" name="file"
+    onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" hidden>
         <label id="uploadHere" for="real">Drop files here or click to upload</label>
         
         <p>Title: <input type="text" placeholder="ex. Binary Addition" required></p>
@@ -14,7 +16,7 @@
         <label for="acknowledge">I understand that my notes do not contain any material that goes against the UCSC Code of Conduct and Academic Integrity. For more information, <a href="https://ue.ucsc.edu/academic-misconduct.html" target="_blank">click here.</a></label><br>
   
         <p>Click on Sammy to submit -> <button id="sammy" type="submit"value="Upload">
-          <img src="https://www.nicepng.com/png/detail/942-9425490_access-all-campaign-jane-han-the-goal-banana.png" alt="buttonpng" border="0" />
+          <img src="https://www.nicepng.com/png/detail/942-9425490_access-all-campaign-jane-han-the-goal-banana.png" alt="buttonpng" />
         </button></p>
   
         <!-- <input type=file name=file>
