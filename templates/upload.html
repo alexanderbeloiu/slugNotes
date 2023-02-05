@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<link rel="stylesheet" href="kellystyle.cssf">
+<link rel="stylesheet" href="kellystyle.css" action="/">
 <title>Upload notes files</title>
     <h1>Upload notes here</h1>
     
@@ -15,8 +15,11 @@
       <label for="acknowledge">I understand that my notes do not contain any material that goes against the UCSC Code of Conduct and Academic Integrity. For more information, <a href="https://ue.ucsc.edu/academic-misconduct.html" target="_blank">click here.</a></label><br>
 
       <p>Click on Sammy to submit -> <button id="sammy" type="submit">
-        <img src="https://www.nicepng.com/png/detail/942-9425490_access-all-campaign-jane-han-the-goal-banana.png" alt="buttonpng" border="0" />
+        <img src="https://www.nicepng.com/png/detail/942-9425490_access-all-campaign-jane-han-the-goal-banana.png" alt="buttonpng" />
       </button></p>
+
+      <input type=submit id="upload" hidden>
+      <a href=""><img scr="image destination"></a>
 
       <!-- <input type=file name=file>
       <input type=submit value=Upload> -->

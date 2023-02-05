@@ -3,6 +3,6 @@ Cruzhacks 2023
 
 #Participants
 Alexander Beloiu
-Kelly lin
-Jeffrey
-Aidan
+Kelly Lin
+Jeffrey Chao
+Aidan Au-Yeung
