@@ -42,10 +42,11 @@ def save_file(file):
     return filename
 
 #how to do file upload https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
+#@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/classes/<int:id>/<string:week>/upload',methods=['POST','GET'])
+def upload_file(id,week):
+    # check if the post request has the file part
     if request.method == 'POST':
-        # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
@@ -58,7 +59,10 @@ def upload_file():
         if file and allowed_file(file.filename):
             
             filename=save_file(file)
-            return redirect(url_for('upload_file', name=filename))
+            file_info.add_file(filename,str(course_info.get_course_by_id(id)),week,str(filename),UPLOAD_FOLDER+'/'+filename)
+    
+            
+            return redirect("/classes/"+str(id)+"/"+week+"")
     return render_template('upload.html')
 
 @app.route("/")

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SlugNotes</title>
+</head>
+<body>
+
+    <div class="logo-container"><img class="logopic" width="432" height="88" src="snl2.png" alt="slug"></div>
+
+    <div class="descriptiondiv">
+        <p class="description">Note sharing interface for UCSC students</p>
+    </div>
+    <div class="searchandmenu">
+    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search For Class (Ex: CSE 12 Nath Fall)" title="course">
+    <!--li is individual classes, href is link to class-->
+    
+      <ul id="myMenu">
+
+        
+        <li><a href="/classes/1/">cool class</a></li>
+        
+        <li><a href="/classes/2/">test</a></li>
+        
+        
+    
+   
+    </ul>
+  </div>
+ 
+
+
+
+    <script>
+      //alter so instead of each char in input, each char in inputdictionary
+      //for dropdown search
+      function myFunction() {
+        // Declare variables
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("mySearch");//input value string
+        filter = input.value.toUpperCase();//input value capitalized string
+        ul = document.getElementById("myMenu");
+        li = ul.getElementsByTagName("li");//class names string
+        //shallow copy
+
+        var inputArray=filter.split(" ");//input value split list by space WORKS
+
+        //class names split list by space
+        
+
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];//char
+          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {//check if char seq.
+            li[i].style.display = "";
+          } else {
+            li[i].style.display="none";
+          }
+        }
+      }
+      //for dropdown menu to appear
+    //   document.getElementById("mySearch").addEventListener("click", function() {
+    //     document.getElementById("myMenu").style.visibility="visible";;
+      </script>
+
+
+<div class="bottom_bar">
+  <div class="bottom_header"><h1>Add Class</h1></div>
+  <br>
+  <div><form class="bottom-form" action = "/classes" method="POST"></form></div>
+      <div><input id="csrf_token" name="csrf_token" type="hidden" value="IjRmYWQ0YWRjZTBkNzQxZjdjMWE3ZjE2NDg3NjZkYTllNGU5NGViNjQi.Y98vbA.DrSL4BlWQPisEV1FDwRcAuXYpSs"></div>
+      <div class="bottom-inputs"><input id="name" name="name" required type="text" placeholder="Ex. cse 30 munishkina fall 2023"value="">
+
+      <br>
+      <input id="submit" class="submit" name="submit" type="submit" value="Add"></div>
+  </form>
+  </div>
+</body>
+</html>
