@@ -155,6 +155,9 @@ class course():
         #returns tuple of the class name and its id
         classes = self.session.query(Class.name, Class.id).all()
         return list(classes)
+    def get_id_by_class_name(self, class_name):
+        class_id = self.session.query(Class.id).filter_by(name=class_name).first()
+        return class_id[0]
 
 
 

@@ -96,12 +96,16 @@ def add_class():
         #grab all the users that typed in the entered classname. Should return None unless the class is already in the database
         #Class.query.filter_by(name = form.name.data).first()
         #!!! Need to add and else statement in case the classdata does exist. Maybe say that this class is already in our database or smthn
-        classdata = course_info.add_class(form.name.data)
-        if classdata is not False:
+        class_name=form.name.data
+        new_class = course_info.add_class(form.name.data)
+        if new_class is not False:
             flash("Class Added Successfully!")
             form.name.data = ''
             name = form.name.data
             form.name.data = ''
+            for i in range(10):
+                print(new_class)
+                course_info.add_folder(str(f"Week {i+1}"), str(course_info.get_course_by_id(course_info.get_id_by_class_name(str(new_class)))))
         else:
             flash("That class is already in the DataBase!!!")
     
@@ -122,6 +126,7 @@ def classes(id):
         #Class.query.filter_by(name = form.name.data).first()
         #!!! Need to add and else statement in case the classdata does exist. Maybe say that this class is already in our database or smthn
         classdata = course_info.add_folder(form.name.data,class_name)
+        
         if classdata is not False:
             flash("Class Added Successfully!")
             form.name.data = ''

@@ -46,7 +46,6 @@ html *{font-family:"JetBrains Mono",monospace;}
 /* Style the navigation menu */
 #myMenu {
   position:fixed;
-  visibility:hidden;
   list-style-type: none;
   padding: 0;
   margin: 0;

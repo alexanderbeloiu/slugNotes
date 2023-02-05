@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 {% if name %}
-    <h1>You entered in the class: {{ name }}</h1>
+    <h1>You entered in the folder: {{ name }}</h1>
 {% else %}
-    <h1>Enter a New Class?</h1>
+    <h1>Add folder to class</h1>
     <br>
     <form action = "/classes/{{ id }} " method="POST">
         {{ form.hidden_tag() }}
@@ -15,7 +15,7 @@
         {{ form.submit() }}
     </form>
     <br><br><br>
-    <h3>Classes in Database:</h3>
+    <h3>Folders in Database:</h3>
 {% for our_week in our_weeks %}
     <tr>
     <td>
