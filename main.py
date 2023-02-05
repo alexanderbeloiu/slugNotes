@@ -1,7 +1,8 @@
 import os
 #pip3 install flask
-from flask import Flask, flash, request, redirect, url_for, render_template, request, redirect, url_for, flash, jsonify,send_from_directory
+from flask import Flask, flash, request, redirect, url_for, render_template, url_for, flash, jsonify,send_from_directory
 from werkzeug.utils import secure_filename
+import flask
 import hashlib
 import uuid
 import database
@@ -97,11 +98,16 @@ with app.app_context():
 def add_class():
     name = None
     form = ClassForm()
-    if form.validate_on_submit():
+    # if method is post
+    print("-----------------------")
+    print(flask.request.method)
+    
+    if  flask.request.method == 'POST':
         #grab all the users that typed in the entered classname. Should return None unless the class is already in the database
         #Class.query.filter_by(name = form.name.data).first()
         #!!! Need to add and else statement in case the classdata does exist. Maybe say that this class is already in our database or smthn
-        class_name=form.name.data
+        class_name=request.form['name']
+        print(request.form['name'])
         new_class = course_info.add_class(form.name.data)
         if new_class is not False:
             flash("Class Added Successfully!")

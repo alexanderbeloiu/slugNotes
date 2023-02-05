@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 {% block content %}
 <head>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/jeffstyles.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,18 +33,10 @@
   {% if name %}
   <h1>You entered in the class: {{ name }}</h1>
 {% else %}
-  <h1>Add Class</h1>
-  <br>
-  <form action = "/classes" method="POST">
-      {{ form.hidden_tag() }}
+  
 
-      {{ form.name.label }}
-      {{ form.name() }}
 
-      <br>
-      {{ form.submit() }}
-  </form>
-  <br><br><br>
+
 {% endif %}
 
 
@@ -80,6 +72,19 @@
     //   document.getElementById("mySearch").addEventListener("click", function() {
     //     document.getElementById("myMenu").style.visibility="visible";;
       </script>
+
+
+<div><div class="bottom_bar">
+    <div class="bottom_header"><h1>Add Class</h1></div>
+    <br>
+    <div><form class="bottom-form" action = "/classes" method="POST">
+       
+        <div class="bottom-inputs"><input id="name" name="name" required type="text" placeholder="Ex. cse 30 munishkina fall 2023"value="">
+  
+        <br>
+        <input id="submit" class="submit" name="submit" type="submit" value="Add"></div>
+    </form>
+    </div></div>
 </body>
 {% endblock %}
 
