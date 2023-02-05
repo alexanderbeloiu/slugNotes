@@ -20,33 +20,32 @@
     
       <ul id="myMenu">
 
-        {% if name %}
-        <h1>You entered in the class: {{ name }}</h1>
-    {% else %}
-        <h1>Add Class</h1>
-        <br>
-        <form action = "/classes" method="POST">
-            {{ form.hidden_tag() }}
-    
-            {{ form.name.label }}
-            {{ form.name() }}
-    
-            <br>
-            {{ form.submit() }}
-        </form>
-        <br><br><br>
-        <h3>Classes:</h3>
+        
     {% for our_class in our_classes %}
-        <tr>
-        <td>
-        <a href="{{ url_for('classes', id=our_class[1])}}">{{ our_class[0] }}</a><br>
-        </td>
-        </tr>
+        
+        <li><a href="{{ url_for('classes', id=our_class[1])}}">{{ our_class[0] }}</a></li>
+        
+        
     {% endfor %}
-    {% endif %}
+   
     </ul>
   </div>
+  {% if name %}
+  <h1>You entered in the class: {{ name }}</h1>
+{% else %}
+  <h1>Add Class</h1>
+  <br>
+  <form action = "/classes" method="POST">
+      {{ form.hidden_tag() }}
 
+      {{ form.name.label }}
+      {{ form.name() }}
+
+      <br>
+      {{ form.submit() }}
+  </form>
+  <br><br><br>
+  {% endif %}
 
 
     <script>
