@@ -63,7 +63,7 @@ def upload_file():
 
 @app.route("/")
 def hello():
-    return render_template('index.html')
+    return render_template('mainpage.html')
 
 
 #Creating a Form Class for adding new classes to the class database. One input box. One submit box

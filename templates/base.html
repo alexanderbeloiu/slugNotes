@@ -10,8 +10,13 @@
     </ul>
 {% endif %}
 {% endwith %}
+<link rel="stylesheet" href="/static/navbar.css">
+
     <div>
-        <h1>Directory:<a href="/">Home</a> | <a href="/classes">classes</a></h1>
+       <ul class="navbarul">
+        <li class="navbarli"><a class="navbarlia" href="/">Home</a></li>
+        <li class="navbarli"><a class="navbarlia" href="/classes">Classes</a></li>
+       </ul>
     </div>
 {% block content%} {% endblock %}
 </body>
