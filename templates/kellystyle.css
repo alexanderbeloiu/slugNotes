@@ -49,3 +49,7 @@ html, body {
     max-width:100px;
     height:100px;
   }
+  #move{
+    display:flex;
+    justify-content: flex-end;
+  }
