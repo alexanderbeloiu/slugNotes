@@ -5,7 +5,14 @@
 </head>
 <body>
 <link rel="stylesheet" href="/static/navbar.css">
-{% with messages = get_flashed_messages() %}
+
+    <div>
+       <ul class="navbarul">
+        <li class="navbarli"><a class="navbarlia" href="/">Home</a></li>
+        <li class="navbarli"><a class="navbarlia" href="/classes">classes</a></li>
+       </ul>
+    </div>
+    {% with messages = get_flashed_messages() %}
 {% if messages %}
     <ul class=flashes>
 {% for message in messages %}
@@ -14,12 +21,6 @@
     </ul>
 {% endif %}
 {% endwith %}
-    <div>
-       <ul class="navbarul">
-        <li class="navbarli"><a class="navbarlia" href="/">Home</a></li>
-        <li class="navbarli"><a class="navbarlia" href="/classes">classes</a></li>
-       </ul>
-    </div>
 {% block content%} {% endblock %}
 </body>
 

@@ -1,9 +1,12 @@
+body{
+    margin:0;
+}
 .navbarul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: white;
+    background-color: gray;
   }
   
   .navbarli {
