@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 <title>{{ week }}</title>
+<div class=".flex">
+<div>
 {% block content %}
 {% if name %}
     <h1>You entered in the class: {{ name }}</h1>
@@ -15,27 +17,7 @@
     
     </td>
     </tr>
-{% endfor %}
-<div id="move">
-<link rel="stylesheet" href="kellystyle.cssf">
-
-    <h1>Upload notes here</h1>
-    
-    <form method=post enctype=multipart/form-data>
-      <input type="file" id="real" hidden>
-      <label id="uploadHere" for="real">Drop files here or click to upload</label>
-      
-      <p>Title: <input type="text" placeholder="ex. Binary Addition" required></p>
-      <p>Student Name: <input type="text" required></p>
-
-      <input type="checkbox" id="acknowledge" value="False" required>
-      <label for="acknowledge">I understand that my notes do not contain any material that goes against the UCSC Code of Conduct and Academic Integrity. For more information, <a href="https://ue.ucsc.edu/academic-misconduct.html" target="_blank">click here.</a></label><br>
-
-      <p>Click on Sammy to submit -> <button id="sammy" type="submit">
-        <img src="https://www.nicepng.com/png/detail/942-9425490_access-all-campaign-jane-han-the-goal-banana.png" alt="buttonpng" border="0" />
-      </button></p>
-
-      <!-- <input type=file name=file>
-      <input type=submit value=Upload> -->
-    </form>  </div>
+{% endfor %}<div>
+<a href="{{name}}/upload">Upload</a>
+</div>
 {% endblock %}

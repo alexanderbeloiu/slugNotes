@@ -53,3 +53,7 @@ html, body {
     display:flex;
     justify-content: flex-end;
   }
+  .flex{
+    display:flex;
+    justify-content: space-between;
+  }
