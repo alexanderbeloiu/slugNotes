@@ -1,0 +1,51 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family:'Courier New', Courier, monospace
+  }
+  
+  h1{
+    margin-top: -5px;
+    font-size: 75px;
+  }
+  
+  .desc{
+    margin-top: -59px;  
+    margin-bottom: 30px;
+    font-size: 15px;
+  }
+  
+  span{
+    font-size: 75px;
+    font-weight: 20px;
+    color: darkgray
+  }
+  
+  #uploadHere{
+    max-width: 200px;
+    height: 200px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 30px;
+    font-size: 30px;
+    cursor: pointer;
+    color: darkgray;
+    border: 2px dashed black;
+    border-radius: 8px;
+  }
+  
+  .existingNotes{
+    border: 2px dashed black;
+    border-radius: 8px;
+    max-width: 200px;
+    height:200px;
+    display: flex;
+  }
+  
+  img {
+    max-width:100px;
+    height:100px;
+  }

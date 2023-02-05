@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>upload portal on right edge</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1>Upload notes here!</h1>
+  <script src="script.js"></script>
+
+  <form action="/url" method="GET">
+    <div class="upload">
+      <input type="file" id="real" hidden/>
+      <label id="uploadHere" for="real">Drop files here or click to upload</label>
+    </div>
+    <p>Title: <input type="text" placeholder="ex. Binary Addition" required>
+    <p>Name: <input type="text" required></p>
+  
+    <input type="checkbox" id="acknowledge" value="acknowledge" required>
+    <label for="acknowledge">I understand that my notes do not contain any material that goes against the UCSC Code of Conduct and Academic Integrity. For more information, <a href="https://ue.ucsc.edu/academic-misconduct.html" target="_blank">click here.</a></label><br>
+
+    <p>Click on Sammy to sumbit -><button id="sammy" type="submit">
+        <img src="https://www.nicepng.com/png/detail/942-9425490_access-all-campaign-jane-han-the-goal-banana.png" alt="buttonpng" border="0" />
+      </button></p>
+  </form>
+  
+</body>
+
+</html>
