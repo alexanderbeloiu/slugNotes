@@ -1,4 +1,5 @@
 import os
+#pip3 install flask
 from flask import Flask, flash, request, redirect, url_for, render_template, request, redirect, url_for, flash, jsonify,send_from_directory
 from werkzeug.utils import secure_filename
 import hashlib
