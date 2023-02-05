@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 <title>{{ week }}</title>
+<div class=".flex">
+<div>
 {% block content %}
 {% if name %}
     <h1>You entered in the class: {{ name }}</h1>
@@ -7,7 +9,7 @@
     <h1>Enter a New Class?</h1>
     <br>
     <h3>Classes in Database:</h3>
-    {% endif %}
+{% endif %}
 {% for our_file in our_files %}
     <tr>
     <td>
@@ -15,11 +17,7 @@
     
     </td>
     </tr>
-{% endfor %}
-
-<h1>Upload new File</h1>
-<form method=post enctype=multipart/form-data>
-    <input type=file name=file>
-    <input type=submit value=Upload>
-</form>   
+{% endfor %}<div>
+<a href="{{name}}/upload">Upload</a>
+</div>
 {% endblock %}

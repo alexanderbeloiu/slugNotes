@@ -1,0 +1,27 @@
+body{
+    margin:0;
+}
+.navbarul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: gray;
+  }
+  
+  .navbarli {
+    float: left;
+  }
+  
+  .navbarlia {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  .navbarlia:hover {
+    background-color: lightblue;
+  }

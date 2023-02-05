@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.lists{
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 7px;
+    background-color:  rgb(158, 196, 255);
+}
+
+.list {
+    
+    border-radius: 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(158, 196, 255);
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 7px;
+    color: black;
+    text-decoration: none;
+}
+
+hr{
+    color:lightblue;
+}

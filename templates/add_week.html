@@ -1,9 +1,24 @@
 {% extends "base.html" %}
+
 {% block content %}
+<link rel="stylesheet" href="/static/week_style.css">
+<div class="lists">
+    <h3>Folders in Database:</h3>
+{% for our_week in our_weeks %}
+    <tr>
+    <td>
+        <a class="list" href="{{our_week}}">{{ our_week }}</a><hr>
+    
+    </td>
+    </tr>
+    
+{% endfor %}
+</div>
+
 {% if name %}
     <h1>You entered in the folder: {{ name }}</h1>
 {% else %}
-    <h1>Add folder to class</h1>
+<h1>Add folder to class</h1>
     <br>
     <form action = "/classes/{{ id }} " method="POST">
         {{ form.hidden_tag() }}
@@ -15,14 +30,5 @@
         {{ form.submit() }}
     </form>
     <br><br><br>
-    <h3>Folders in Database:</h3>
-{% for our_week in our_weeks %}
-    <tr>
-    <td>
-        <a href="{{our_week}}">{{ our_week }}</a><br>
-    
-    </td>
-    </tr>
-{% endfor %}
-{% endif %}
-{% endblock %}
+    {% endif %}
+    {% endblock %}
