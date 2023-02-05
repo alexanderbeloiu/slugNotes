@@ -18,7 +18,7 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','c','py','docx',
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "ouhojaheoduh[a0uhfouahd;oubasdoiholjawbe;h[oiabfljhvipuh"
-
+#dewg
 #this is the object that interacts with the database
 file_info=database.Files()
 course_info=database.course()
